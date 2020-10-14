@@ -31,4 +31,4 @@
     (with-open-file (out-stream "README.md" :direction :output :if-does-not-exist :create :if-exists :overwrite)
       (write-line (concatenate 'string "# Meet " cat-name) out-stream)
       (loop for file-name in files-names
-        do (write-line (concatenate 'string "![" file-name "](" file-name ")") out-stream)))))
+            do (write-line (concatenate 'string "<img src=\"" file-name "\" width=\"250\">") out-stream)))))
