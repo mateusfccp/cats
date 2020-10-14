@@ -27,8 +27,8 @@
 (defun generate-single-md (cat-name)
   "Generate a markdown file for the given cat-name."
   (let* ((files (uiop:directory-files (concatenate 'string "../cats/" cat-name "/")))
-         (files-names (map 'list #'file-namestring files)))
-    (with-open-file (out-stream "README.md" :direction :output :if-does-not-exist :create :if-exists :overwrite)
+         (files-names (remove (lambda (name) (string= name "README.md")) (map 'list #'file-namestring files))))
+    (with-open-file (out-stream (concatenate 'string "../cats/" cat-name "/README.md") :direction :output :if-does-not-exist :create :if-exists :overwrite)
       (write-line (concatenate 'string "# Meet " cat-name) out-stream)
       (loop for file-name in files-names
             do (write-line (concatenate 'string "<img src=\"" file-name "\" width=\"250\">") out-stream)))))
