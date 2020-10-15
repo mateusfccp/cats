@@ -4,9 +4,8 @@
   (with-open-file (in-stream "template.md" :if-does-not-exist :error)
     (let ((template-string (make-string (file-length in-stream))))
       (read-sequence template-string in-stream)
-      ;; (str-replace template-string "{{meet}}" (generate-table (get-cats-names)))
       (with-open-file (out-stream "../README.md" :direction :output :if-does-not-exist :create :if-exists :overwrite)
-        (write-string (str-replace template-string "{{meet}}" (generate-table (get-cats-names))) out-stream)))))
+        (write-string (str-replace template-string "{{table}}" (generate-table (get-cats-names))) out-stream)))))
         
 (defun get-cats-names ()
   "Return a list of the cats names."
@@ -32,7 +31,7 @@
   (str-replace "<table>$1</table>" "$1" (generate-table-rows cats-names)))
 
 (defun generate-table-cell (cat-name)
-  (str-replace (str-replace "<td align=\"center\">$1<strong>$2</strong></td>" "$1" (generate-img (get-cat-profile-picture cat-name))) "$2" cat-name))
+  (str-replace (str-replace "<td align=\"center\"><a href=\"./cats/$2\">$1<strong>$2</strong></a></td>" "$1" (generate-img (get-cat-profile-picture cat-name))) "$2" cat-name))
 
 (defun generate-table-rows (cats-names)
   (let* ((current-names (subseq cats-names 0 (min (length cats-names) 3)))
