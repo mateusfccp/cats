@@ -4,6 +4,11 @@
 exec ros -Q -L sbcl-bin -- $0 "$@"
 |#
 
+(defpackage #:DestructHub/cats
+  (:use #:cl))
+
+(in-package #:DestructHub/cats)
+
 (load "../cli/generator.lisp")
 
 (defun main (&rest argv)
