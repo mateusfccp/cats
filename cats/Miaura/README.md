@@ -1,5 +1,4 @@
 # Meet Miaura
-<img src="README.md" width="250">
 <img src="miaura_1.jpg" width="250">
 <img src="miaura_10.jpg" width="250">
 <img src="miaura_11.jpg" width="250">
