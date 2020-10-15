@@ -31,7 +31,7 @@
   (str-replace "<table>$1</table>" "$1" (generate-table-rows cats-names)))
 
 (defun generate-table-cell (cat-name)
-  (str-replace (str-replace "<td align=\"center\"><a href=\"./cats/$2\">$1<strong>$2</strong></a></td>" "$1" (generate-img (get-cat-profile-picture cat-name))) "$2" cat-name))
+  (str-replace (str-replace (str-replace "<td align=\"center\"><a href=\"./cats/$3\">$1<strong>$2</strong></a></td>" "$1" (generate-img (get-cat-profile-picture cat-name))) "$2" cat-name) "$3" cat-name))
 
 (defun generate-table-rows (cats-names)
   (let* ((current-names (subseq cats-names 0 (min (length cats-names) 3)))
