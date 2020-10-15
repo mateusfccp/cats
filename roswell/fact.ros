@@ -1,0 +1,13 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+
+(load "../cli/generator.lisp")
+
+(defun main (&rest argv)
+  (declare (ignorable argv)
+           "Generates both the main README.md and the individual README.md of each cat."
+           (generate-main-readme)
+           (generate-cats-readmes (get-cats-names))))
