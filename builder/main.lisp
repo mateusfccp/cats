@@ -24,6 +24,10 @@
   "Return only the pathname's folder as string instead of the entire path."
   (first (last (pathname-directory pathname))))
 
+(defun generate-cats-mds ()
+  (loop for cat-name in (get-cats-names)
+        do (generate-single-md cat-name)))
+
 (defun generate-single-md (cat-name)
   "Generate a markdown file for the given cat-name."
   (let* ((files (remove-if #'is-not-image (uiop:directory-files (concatenate 'string "../cats/" cat-name "/"))))
