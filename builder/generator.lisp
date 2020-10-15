@@ -33,7 +33,7 @@
           (generate-img (get-cat-profile-picture cat-name))
           cat-name))
 
-(defun generate-table-rows (cats-names &key (chunk-size 3))
+(defun generate-table-rows (cats-names &key (chunk-size 4))
   "Returns a string with one row for each cat name in the given list.\
 Each row will have a number of elements corresponding to the given chunk size."
   (let* ((current-names (subseq cats-names 0 (min (length cats-names) chunk-size)))
@@ -42,7 +42,7 @@ Each row will have a number of elements corresponding to the given chunk size."
          (row-string (format nil "<tr>~a</tr>" cells-string)))
     (if (null (nth chunk-size cats-names))
         row-string
-        (concatenate 'string row-string (generate-table-rows (cdddr cats-names))))))
+        (concatenate 'string row-string (generate-table-rows (subseq cats-names chunk-size))))))
 
 (defun generate-table (cats-names)
   "Returns a string of the entire table for a given list of names."
