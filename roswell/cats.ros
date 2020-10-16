@@ -1,18 +1,20 @@
 #!/bin/sh
 #|-*- mode:lisp -*-|#
 #|
-exec ros -Q -L sbcl-bin -- $0 "$@"
+exec ros -Q -- $0 "$@"
 |#
 
-(defpackage #:DestructHub/cats
-  (:use #:cl))
+(progn
+  (ros:ensure-asdf)
+  ;; #+quicklisp (ql:quickload '(lisp-chat/client) :silent t)
+  )
 
-(in-package #:DestructHub/cats)
+(defpackage :DestructHub.script.cats
+  (:use :cl))
 
-(load "../cli/generator.lisp")
+(in-package :DestructHub.script.cats)
+
 
 (defun main (&rest argv)
-  (declare (ignorable argv)
-           "Generates both the main README.md and the individual README.md of each cat."
-           (generate-main-readme)
-           (generate-cats-readmes (get-cats-names))))
+  (declare (ignorable argv))
+  (format t "Ros test"))
