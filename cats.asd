@@ -3,6 +3,5 @@
   :version "0.0.1"
   :author "Mateus Felipe C C Pinto <mateusfccp@gmail.com>"
   :licence "MIT"
-  :depends-on ("command-line-arguments")
   :components ((:file "generators" :depends-on ("utils"))
                (:file "utils")))
